@@ -13,7 +13,7 @@ var PORT = 3000;
 var app = express();
 
 // Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
@@ -38,6 +38,15 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/bikeNews";
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
+
+var db = mongoose.connection;
+db.on('error',function(err){
+  console.log('Mongoose Error: ',err);
+});
+
+db.once('open',function(){
+  console.log('Mongoose Connection Successful.')
+})
 
 // mount the routes
 var routes = require("./controllers/news_controller.js");
