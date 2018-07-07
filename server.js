@@ -20,9 +20,6 @@ app.use(express.static("public"));
 
 // Use handlebars for rendering the webpage
 var exphbs = require("express-handlebars");
-var hbs = exphbs.create();
-// hbs.registerHelper('dateFormat',require('handlebars-dateformat'))
-//app.engine("handlebars",exphbs({defaultLayout: "main"}));
 var hbs = exphbs.create({
   // Specify helpers which are only registered on this instance.
   helpers: {
