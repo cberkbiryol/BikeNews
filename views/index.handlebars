@@ -1,0 +1,76 @@
+<div class=container>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="topLine text-center display-3">
+                <i class="material-icons text-center icon1">
+                    directions_bike
+                </i>
+                Bicycle News
+                <i class="material-icons text-center icon1">
+                    directions_bike
+                </i>
+            </h1>
+            <p class="topLine lead display-4 text-center">
+                Keep up with most recent Gears & News in the Bicycling world...
+            </p>
+            <p class="d-flex justify-content-center">
+                <a class="topButton btn btn-lg m-1 px-4" href="/fetch" role="button">Get Latest News</a>
+                <a class="topButton btn btn-lg m-1 px-4" href="/commented" role="button">Show Commented</a>
+                <a class="topButton btn btn-danger btn-lg m-1 px-4" href="/clear" role="button">Clear all</a>
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card-columns">
+            {{#each bikeNews}}
+            <div class="card card2">
+                <img class="card-img-top" src="{{image}}" alt="">
+                <div class="card-body">
+                    <a class="card-title lead title1" href="{{link}}">{{title}}</a>
+                    <p class="card-text">{{subject}}</p>
+                    <p class="card-text text-muted small">
+                        {{dateFormat date "dddd, MMMM Do YYYY, h:mm a"}}
+                    </p>
+                    <p class="text-right m-0">
+                        <a class="icon2" href="" data-toggle="modal" data-target="#commentModal" data-newsid="{{_id}}"> {{comments.length}}
+                            <i class="material-icons">rate_review</i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            {{/each }}
+        </div>
+    </div>
+</div>
+
+{{!-- MODAL SETUP --}}
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Comments on this article</h5>
+                <button type="button" class="close close1" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="oldcomments">
+                </div>
+                <hr>
+                <h5> Add Your Comment:</h5>
+                <form class="newComment">
+                    <div class="form-group">
+                        <label for="userName" class="col-form-label">Name</label>
+                        <input id="userName" name="userName" placeholder="Your Name" type="text" required="required" class="form-control here">
+                    </div>
+                    <div class="form-group">
+                        <label for="commentBody" class="col-form-label">Comment:</label>
+                        <textarea id="commentBody" name="commentBody" cols="40" rows="2" class="form-control" required="required" aria-describedby="commentInput"></textarea>
+                        <small id="commentInput" class="form-text text-muted">Please provide a brief comment.</small>
+                    </div>
+                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>    

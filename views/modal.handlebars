@@ -1,0 +1,16 @@
+{{#each comments}}
+<div class="card card3 my-2 text-left">
+    <div class="card-header">
+        <div class="d-flex justify-content-between">
+            <h5>{{userName}}</h5>
+            <span class="text-muted">{{dateFormat date "dddd, MMMM Do YYYY, h:mm a"}}</span>
+            <button type="button" class="close close2" data-id="{{_id}}" aria-label="Close">
+                    &times;
+            </button>
+        </div>
+    </div>
+    <div class="card-body">        
+        <p class="card-text lead">{{comment}}</p>
+    </div>
+</div>
+{{/each}}
